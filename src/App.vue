@@ -2,7 +2,6 @@
   <v-app>
     <v-main>
       <AppLayout />
-      <HelloWorld />
     </v-main>
   </v-app>
 </template>
