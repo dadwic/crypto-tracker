@@ -31,8 +31,8 @@
           </v-col>
 
           <v-col>
-            <v-sheet min-height="70vh" rounded="lg">
-              <!--  -->
+            <v-sheet min-height="70vh" class="pa-4" rounded="lg">
+              <p>{{ $store.state.firstName }} {{ $store.state.lastName }}</p>
             </v-sheet>
           </v-col>
         </v-row>
