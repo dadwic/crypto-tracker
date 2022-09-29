@@ -3,7 +3,7 @@
   <v-dialog v-model="dialog" persistent max-width="600px">
     <template #activator="{ on, attrs }">
       <v-btn
-        v-if="$store.state.portfolio.length > 0"
+        v-if="$store.state.symbols.length > 0"
         dark
         class="mr-2"
         color="primary"
@@ -76,7 +76,11 @@
       <v-divider></v-divider>
       <v-expand-transition>
         <v-list v-if="model">
-          <v-list-item v-for="(field, i) in model" :key="i">
+          <v-list-item
+            v-for="(field, i) in model"
+            :key="i"
+            @click="$store.commit('removeSymbol', field.symbol)"
+          >
             <v-list-item-content>
               <v-list-item-title v-text="field.symbol"></v-list-item-title>
               <v-list-item-subtitle
@@ -113,7 +117,7 @@ export default {
 
   watch: {
     model(val) {
-      console.log(val);
+      this.$store.commit("setSymbols", val);
     },
     search() {
       // Items have already been loaded
