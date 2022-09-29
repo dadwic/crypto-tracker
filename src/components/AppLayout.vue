@@ -2,13 +2,7 @@
   <v-app id="inspire">
     <v-app-bar app color="white" flat>
       <v-container class="py-0 fill-height">
-        <v-btn
-          v-if="$store.state.symbols.length > 0"
-          class="mr-2"
-          color="primary"
-          >Add / Update</v-btn
-        >
-        <v-btn v-else class="mr-2" color="primary">Add Stock</v-btn>
+        <DialogForm />
         <v-btn color="primary">Refresh</v-btn>
       </v-container>
     </v-app-bar>
@@ -49,11 +43,14 @@
 
 <script>
 import PieChart from "./Pie.vue";
+import DialogForm from "./DialogForm.vue";
+
 export default {
   name: "AppLayout",
 
   components: {
     PieChart,
+    DialogForm,
   },
 
   data: () => ({
