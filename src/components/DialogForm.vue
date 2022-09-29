@@ -28,8 +28,6 @@
           chips
           multiple
           clearable
-          hide-details
-          hide-selected
           item-text="symbol"
           item-value="symbol"
           label="Search for a coin..."
@@ -76,20 +74,23 @@
       <v-divider></v-divider>
       <v-expand-transition>
         <v-list v-if="model">
-          <v-list-item
-            v-for="(field, i) in model"
-            :key="i"
-            @click="$store.commit('removeSymbol', field.symbol)"
-          >
+          <v-list-item v-for="(item, i) in model" :key="i">
             <v-list-item-content>
-              <v-list-item-title v-text="field.symbol"></v-list-item-title>
+              <v-list-item-title v-text="item.symbol"></v-list-item-title>
               <v-list-item-subtitle
-                v-text="field.lastPrice"
+                v-text="item.lastPrice"
               ></v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-action>
-              <v-btn icon>
+              <v-btn
+                v-if="getBySymbol(item.symbol)"
+                icon
+                @click="removeSymbol(item.symbol)"
+              >
                 <v-icon>mdi-close</v-icon>
+              </v-btn>
+              <v-btn v-else icon @click="addSymbol(item)">
+                <v-icon>mdi-plus</v-icon>
               </v-btn>
             </v-list-item-action>
           </v-list-item>
@@ -106,6 +107,8 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   data: () => ({
     dialog: false,
@@ -114,11 +117,10 @@ export default {
     model: null,
     search: null,
   }),
-
+  computed: mapGetters(["getBySymbol"]),
+  methods: mapActions(["addSymbol", "removeSymbol"]),
+  // eslint-disable-next-line vue/order-in-components
   watch: {
-    model(val) {
-      this.$store.commit("setSymbols", val);
-    },
     search() {
       // Items have already been loaded
       if (this.items.length > 0) return;
