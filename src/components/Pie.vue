@@ -1,7 +1,15 @@
 <template>
   <Pie
     :chart-options="chartOptions"
-    :chart-data="chartData"
+    :chart-data="{
+      labels: getDataByKey('symbol'),
+      datasets: [
+        {
+          backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+          data: getDataByKey('lastPrice'),
+        },
+      ],
+    }"
     :chart-id="chartId"
     :dataset-id-key="datasetIdKey"
     :plugins="plugins"
@@ -13,6 +21,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import { Pie } from "vue-chartjs/legacy";
 
 import {
@@ -63,20 +72,12 @@ export default {
   },
   data() {
     return {
-      chartData: {
-        labels: ["VueJs", "EmberJs", "ReactJs", "AngularJs"],
-        datasets: [
-          {
-            backgroundColor: ["#41B883", "#E46651", "#00D8FF", "#DD1B16"],
-            data: [40, 20, 80, 10],
-          },
-        ],
-      },
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
       },
     };
   },
+  computed: mapGetters(["getDataByKey"]),
 };
 </script>
