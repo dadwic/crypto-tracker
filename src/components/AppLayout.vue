@@ -2,7 +2,13 @@
   <v-app id="inspire">
     <v-app-bar app color="white" flat>
       <v-container class="py-0 fill-height">
-        <v-btn class="mr-2" color="primary">Add / Update</v-btn>
+        <v-btn
+          v-if="$store.state.symbols.length > 0"
+          class="mr-2"
+          color="primary"
+          >Add / Update</v-btn
+        >
+        <v-btn v-else class="mr-2" color="primary">Add Stock</v-btn>
         <v-btn color="primary">Refresh</v-btn>
       </v-container>
     </v-app-bar>
@@ -10,7 +16,7 @@
     <v-main class="grey lighten-3">
       <v-container>
         <v-row>
-          <v-col cols="2">
+          <v-col>
             <v-sheet rounded="lg">
               <v-list color="transparent">
                 <v-list-item v-for="n in 5" :key="n" link>
@@ -31,8 +37,8 @@
           </v-col>
 
           <v-col>
-            <v-sheet min-height="70vh" class="pa-4" rounded="lg">
-              <p>{{ $store.state.firstName }} {{ $store.state.lastName }}</p>
+            <v-sheet class="pa-4" rounded="lg">
+              <PieChart />
             </v-sheet>
           </v-col>
         </v-row>
@@ -42,7 +48,14 @@
 </template>
 
 <script>
+import PieChart from "./Pie.vue";
 export default {
+  name: "AppLayout",
+
+  components: {
+    PieChart,
+  },
+
   data: () => ({
     //
   }),
