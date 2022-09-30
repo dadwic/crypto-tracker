@@ -2,11 +2,13 @@
   <Pie
     :chart-options="chartOptions"
     :chart-data="{
-      labels: getDataByKey('symbol'),
+      labels: noSymbol ? ['None'] : getDataByKey('symbol'),
       datasets: [
         {
-          backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-          data: getDataByKey('lastPrice')
+          backgroundColor: noSymbol
+            ? ['#D9D9D9']
+            : ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+          data: noSymbol ? [100] : getDataByKey('lastPrice')
         }
       ]
     }"
@@ -78,6 +80,6 @@ export default {
       }
     };
   },
-  computed: mapGetters(["getDataByKey"])
+  computed: mapGetters(["noSymbol", "getDataByKey"])
 };
 </script>
