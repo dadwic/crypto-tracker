@@ -6,9 +6,9 @@
       datasets: [
         {
           backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-          data: getDataByKey('lastPrice'),
-        },
-      ],
+          data: getDataByKey('lastPrice')
+        }
+      ]
     }"
     :chart-id="chartId"
     :dataset-id-key="datasetIdKey"
@@ -30,7 +30,7 @@ import {
   Tooltip,
   Legend,
   ArcElement,
-  CategoryScale,
+  CategoryScale
 } from "chart.js";
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale);
@@ -38,46 +38,46 @@ ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale);
 export default {
   name: "PieChart",
   components: {
-    Pie,
+    Pie
   },
   props: {
     chartId: {
       type: String,
-      default: "pie-chart",
+      default: "pie-chart"
     },
     datasetIdKey: {
       type: String,
-      default: "label",
+      default: "label"
     },
     width: {
       type: Number,
-      default: 400,
+      default: 400
     },
     height: {
       type: Number,
-      default: 400,
+      default: 400
     },
     cssClasses: {
       default: "",
-      type: String,
+      type: String
     },
     styles: {
       type: Object,
-      default: () => {},
+      default: () => {}
     },
     plugins: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   data() {
     return {
       chartOptions: {
         responsive: true,
-        maintainAspectRatio: false,
-      },
+        maintainAspectRatio: false
+      }
     };
   },
-  computed: mapGetters(["getDataByKey"]),
+  computed: mapGetters(["getDataByKey"])
 };
 </script>

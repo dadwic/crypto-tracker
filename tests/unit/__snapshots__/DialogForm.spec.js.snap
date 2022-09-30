@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DialogForm.vue should have a custom title and match snapshot 1`] = `
+<v-dialog persistent="" max-width="600px">
+  <v-card>
+    <v-card-title><span class="text-h5">Symbol search</span></v-card-title>
+    <v-card-text>
+      <v-autocomplete items="" chips="" multiple="" clearable="" item-text="symbol" item-value="symbol" label="Search for a coin..." return-object="" solo=""></v-autocomplete>
+    </v-card-text>
+    <v-divider></v-divider>
+    <v-expand-transition>
+      <!---->
+    </v-expand-transition>
+    <v-card-actions>
+      <v-spacer></v-spacer>
+      <v-btn color="blue darken-1" text="">
+        Close
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+</v-dialog>
+`;

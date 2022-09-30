@@ -7,7 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     loading: false,
-    symbols: [],
+    symbols: []
   },
   mutations: {
     startLoading(state) {
@@ -24,8 +24,10 @@ export default new Vuex.Store({
       state.symbols = [...state.symbols, symbol];
     },
     removeSymbol(state, symbol) {
-      state.symbols = state.symbols.filter((item) => item.symbol !== symbol);
-    },
+      state.symbols = state.symbols.filter(
+        (item) => item.symbol !== symbol
+      );
+    }
   },
   actions: {
     setSymbols({ commit }, symbols) {
@@ -52,7 +54,7 @@ export default new Vuex.Store({
           console.error(err);
           context.commit("stopLoading");
         });
-    },
+    }
   },
   getters: {
     getBySymbol: (state) => (symbol) => {
@@ -66,7 +68,7 @@ export default new Vuex.Store({
     },
     noSymbol: (state) => {
       return state.symbols.length === 0;
-    },
+    }
   },
-  plugins: [new VuexPersistence({ modules: ["symbols"] }).plugin],
+  plugins: [new VuexPersistence({ modules: ["symbols"] }).plugin]
 });

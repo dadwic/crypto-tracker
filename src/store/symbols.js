@@ -2099,5 +2099,5 @@ export default [
   "GASBUSD",
   "NEBLBUSD",
   "PROSBUSD",
-  "VIBBUSD",
+  "VIBBUSD"
 ];
