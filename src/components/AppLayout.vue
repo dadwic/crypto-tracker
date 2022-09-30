@@ -60,8 +60,7 @@
 
           <v-col>
             <v-sheet class="pa-4" rounded="lg" elevation="2">
-              <div v-if="noSymbol" class="circle"></div>
-              <PieChart v-else />
+              <PieChart />
             </v-sheet>
           </v-col>
         </v-row>
@@ -77,24 +76,33 @@ import { mapGetters, mapActions, mapState } from "vuex";
 
 export default {
   name: "AppLayout",
-
+  data() {
+    return {
+      polling: null
+    };
+  },
   components: {
     PieChart,
     DialogForm
   },
 
   computed: { ...mapGetters(["noSymbol"]), ...mapState(["loading"]) },
-  methods: mapActions(["addSymbol", "removeSymbol", "fetchSymbols"])
+  methods: {
+    ...mapActions(["addSymbol", "removeSymbol", "fetchSymbols"]),
+    pollData() {
+      // auto update every 20 mins
+      this.polling = setInterval(() => {
+        if (!this.$store.getters.noSymbol) {
+          this.$store.dispatch("fetchSymbols");
+        }
+      }, 1000 * 60 * 20);
+    }
+  },
+  beforeDestroy() {
+    clearInterval(this.polling);
+  },
+  created() {
+    this.pollData();
+  }
 };
 </script>
-
-<style scoped>
-.circle {
-  height: 500px;
-  width: 500px;
-  background-color: #d9d9d9;
-  border: 1px solid #000000;
-  border-radius: 50%;
-  margin: 0 auto;
-}
-</style>
