@@ -13,11 +13,11 @@ export default {
   name: "App",
 
   components: {
-    AppLayout,
+    AppLayout
   },
 
   data: () => ({
     //
-  }),
+  })
 };
 </script>

@@ -35,9 +35,14 @@
                     >
                   </v-list-item-content>
                 </v-list-item>
-                <v-list-item v-for="(item, i) in $store.state.symbols" :key="i">
+                <v-list-item
+                  v-for="(item, i) in $store.state.symbols"
+                  :key="i"
+                >
                   <v-list-item-content>
-                    <v-list-item-title v-text="item.symbol"></v-list-item-title>
+                    <v-list-item-title>{{
+                      item.symbol
+                    }}</v-list-item-title>
                     <v-list-item-subtitle
                       >{{ item.lastPrice }} -
                       {{ item.weightedAvgPrice }}</v-list-item-subtitle
@@ -75,11 +80,11 @@ export default {
 
   components: {
     PieChart,
-    DialogForm,
+    DialogForm
   },
 
   computed: { ...mapGetters(["noSymbol"]), ...mapState(["loading"]) },
-  methods: mapActions(["addSymbol", "removeSymbol", "fetchSymbols"]),
+  methods: mapActions(["addSymbol", "removeSymbol", "fetchSymbols"])
 };
 </script>
 

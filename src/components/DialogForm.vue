@@ -11,7 +11,13 @@
         v-on="on"
         >Add / Update</v-btn
       >
-      <v-btn v-else dark class="mr-2" color="primary" v-bind="attrs" v-on="on"
+      <v-btn
+        v-else
+        dark
+        class="mr-2"
+        color="primary"
+        v-bind="attrs"
+        v-on="on"
         >Add Stock</v-btn
       >
     </template>
@@ -51,7 +57,7 @@
               v-on="on"
             >
               <v-icon left>mdi-bitcoin</v-icon>
-              <span v-text="item.symbol"></span>
+              <span>{{ item.symbol }}</span>
             </v-chip>
           </template>
           <template #item="{ item }">
@@ -62,8 +68,10 @@
               {{ item.symbol.charAt(0) }}
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title v-text="item.symbol"></v-list-item-title>
-              <v-list-item-subtitle v-text="item.symbol"></v-list-item-subtitle>
+              <v-list-item-title>{{ item.symbol }}</v-list-item-title>
+              <v-list-item-subtitle>{{
+                item.symbol
+              }}</v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-action>
               <v-icon>mdi-bitcoin</v-icon>
@@ -76,10 +84,10 @@
         <v-list v-if="model">
           <v-list-item v-for="(item, i) in model" :key="i">
             <v-list-item-content>
-              <v-list-item-title v-text="item.symbol"></v-list-item-title>
-              <v-list-item-subtitle
-                v-text="item.lastPrice"
-              ></v-list-item-subtitle>
+              <v-list-item-title>{{ item.symbol }}</v-list-item-title>
+              <v-list-item-subtitle>{{
+                item.lastPrice
+              }}</v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-action>
               <v-btn
@@ -115,7 +123,7 @@ export default {
     isLoading: false,
     items: [],
     model: null,
-    search: null,
+    search: null
   }),
   computed: mapGetters(["getBySymbol"]),
   methods: mapActions(["addSymbol", "removeSymbol"]),
@@ -137,7 +145,7 @@ export default {
           console.log(err);
         })
         .finally(() => (this.isLoading = false));
-    },
-  },
+    }
+  }
 };
 </script>
